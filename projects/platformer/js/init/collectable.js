@@ -6,9 +6,9 @@
 
   let type = {
     db: { assetKey: "db", points: 10 },
-    max: { assetKey: "max", points: 20 },
+    emerald: { assetKey: "emerald", points: 20 },
     steve: { assetKey: "steve", points: 30 },
-    grace: { assetKey: "grace", points: 40 },
+    ruby: { assetKey: "ruby", points: 40 },
     kennedi: { assetKey: "kennedi", points: 50 },
     diamond: { assetKey: "diamond", points: 60},
   };
@@ -41,8 +41,8 @@
 
     // example:
     createCollectable(type.diamond, 820, 110);//top collectable
-    createCollectable(type.steve, 200, 170, 6, 0.7);//middle collectable
-    createCollectable(type.max, 800, 170, 50, 1.5);//bottom collectable
+    createCollectable(type.ruby, 200, 170, 6, 0.7);//middle collectable
+    createCollectable(type.emerald, 800, 170, 50, 1.5);//bottom collectable
     // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////
   }
