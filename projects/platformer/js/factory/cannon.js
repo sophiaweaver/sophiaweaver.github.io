@@ -48,16 +48,16 @@
             let tweenTo = {}, cannon, projectile, tween, x, y, angle;
             
             if (type === "top") {
-                x = position, y = 40;
-                angle = -180;
+                x = position, y = 60;
+                angle = 90;
                 tweenTo.y = game.world.height;
             } else if (type === "bottom") {
                 x = position, y = game.world.height - 72;
                 angle = 0;
                 tweenTo.y = 0;
             } else if (type === "left") {
-                x = 42, y = position;
-                angle = 90;
+                x = 50, y = position;
+                angle = 360;
                 tweenTo.x = game.world.width;
             } else if (type === "right") {
                 x = game.world.width - 42, y = position;
