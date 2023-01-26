@@ -60,7 +60,7 @@
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
+			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
 				box.css("top", newPositionY);
 			}
@@ -78,8 +78,9 @@
 			var positionX = 0;
 			var points = 0;
 			var speed = 10;
-			var speedY;
-			var positionY;
+			var speedY = 10;
+			var positionY = 0;
+			var colorStr = "rgb(50, 25, 250)";
 
 
 			
@@ -90,19 +91,24 @@
 			*/
 			function update() {
 				positionX = positionX + speed;
-				moveBoxTo(positionX, positionY);
+				positionY = positionY +speedY;
+				moveBoxTo(positionX, positionY);			
 				if (positionX > boardWidth){
 					speed = -speed;
 
-				}
-				if(positionY > boardHeight){
-					speed = -speed;
 				}
 				if (positionX < 0){
 					speed = -speed;
 
 				}
+				if(positionY > boardHeight){
+					speedY = -speedY;
+				}
+				if (positionY < 0){
+					speedY = -speedY;
 
+				}
+				
 				
 				
 			};
@@ -125,6 +131,22 @@
 
 
 			};
+
+
+		
+
+
+			function getRandomColor(){
+				var colorR = Math.random() * 255;
+				var colorG = Math.random() * 255;
+				var colorB = Math.random() * 255;
+				colorStr = "rgb(" colorR "," colorG "," colorB ")";
+				return(colorStr);
+				box.css('background-color', colorStr);
+			};
+			
+			
+
 		})();
 	</script>
 </body>
