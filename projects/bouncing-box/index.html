@@ -81,6 +81,7 @@
 			var speedY = 10;
 			var positionY = 0;
 			var colorStr = "rgb(50, 25, 250)";
+			var randNum = Math.random() * 100;
 
 
 			
@@ -113,6 +114,14 @@
 				
 			};
 
+			function getRandomColor(){
+				var colorR = Math.random() * 255;
+				var colorG = Math.random() * 255;
+				var colorB = Math.random() * 255;
+				colorStr = "rgb(" + colorR + "," + colorG + "," + colorB + ")";
+				return(colorStr);
+				
+			}
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
 			it should increase the points total, increase the speed, and move the box to
@@ -128,22 +137,18 @@
 					speed = speed - 3;
 				}
 				
+				getRandomColor();
+				box.css('background-color', colorStr);
 
-
+				positionX = randNum;
+				positionY = randNum;
 			};
 
 
 		
 
 
-			function getRandomColor(){
-				var colorR = Math.random() * 255;
-				var colorG = Math.random() * 255;
-				var colorB = Math.random() * 255;
-				colorStr = "rgb(" colorR "," colorG "," colorB ")";
-				return(colorStr);
-				box.css('background-color', colorStr);
-			};
+
 			
 			
 
