@@ -1,0 +1,8 @@
+body {
+    background: url("http://www.scholastic.com/content/dam/parents/migrated-assets/articles/header-images-6/girl-blowing-bubbles.jpg") no-repeat center center fixed;
+    background-color: #cccccc;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
