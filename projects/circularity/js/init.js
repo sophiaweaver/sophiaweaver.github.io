@@ -26,15 +26,15 @@ var init = function (window) {
         // TODO 2 : Create a function that draws a circle 
         function drawCircle(){//a named function with a block of code stating what that function should do when it is called (has no parameters)
              // Code to draw a circle
-            circle = draw.randomCircleInArea(canvas, true, true, '#999', 2); //
-            physikz.addRandomVelocity(circle, canvas, 5, 5); //
-            view.addChild(circle); //
-            circles.push(circle); //
+            circle = draw.randomCircleInArea(canvas, true, true, '#999', 2); //draws a random circle of any size location and color
+            physikz.addRandomVelocity(circle, canvas, 5, 5); //sets the random speed and direction of each circle
+            view.addChild(circle); //to make the cirle show on the screen a "child" is added
+            circles.push(circle); //this saves each new circle using the .push()
 
         };
 
         // TODO 3 / 7 : Call the drawCircle() function 
-        //drawCircle();
+        //drawCircle();// calls the drawCircle function 5 times
         //drawCircle();
         //drawCircle();
         //drawCircle();
@@ -56,7 +56,7 @@ var init = function (window) {
         
                 // TODO 4 : Update the circle's position //
            
-            //physikz.updatePosition(circles[0]);
+            //physikz.updatePosition(circles[0]);//this function takes the circle argument and assigns it a new position, the number is pertaining to the index of the array circle 1 or [0]
             //physikz.updatePosition(circles[1]);
             //physikz.updatePosition(circles[2]);
             //physikz.updatePosition(circles[3]);
@@ -64,7 +64,7 @@ var init = function (window) {
             
             
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-            //game.checkCirclePosition(circles[0]);
+            //game.checkCirclePosition(circles[0]);//helps keep circles on screen by making them come back when they srtay off
             //game.checkCirclePosition(circles[1]);
             //game.checkCirclePosition(circles[2]);
             //game.checkCirclePosition(circles[3]);
