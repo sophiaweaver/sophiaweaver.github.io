@@ -40,7 +40,7 @@ var init = function (window) {
         //drawCircle();
         //drawCircle();
         for (var drawCircles = 0; drawCircles < 100; drawCircles++) {
-            drawCircle();
+            drawCircle();//this loop starts at 0 circles draws 100 circles then stops drawing and increases from 0 one cirtcle at a time
         }
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
@@ -64,18 +64,18 @@ var init = function (window) {
             
             
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-            //game.checkCirclePosition(circles[0]);//helps keep circles on screen by making them come back when they srtay off
+            //game.checkCirclePosition(circles[0]);//helps keep circles on screen 
             //game.checkCirclePosition(circles[1]);
             //game.checkCirclePosition(circles[2]);
             //game.checkCirclePosition(circles[3]);
             //game.checkCirclePosition(circles[4]);
 
             // TODO 9 : Iterate over the array
-            for (var i = 0; i < circles.length; i++) {
-                var eachValue = circles[i];
+            for (var i = 0; i < circles.length; i++) {//this loop uses variable "i" starting at 0, ending at the end of the circles array value and increasing by one each time it runs
+                var eachValue = circles[i];//the each value is being assigned to circles so that we know every circle is being included
                 
-                physikz.updatePosition(circles[i]);
-                game.checkCirclePosition(circles[i]);
+                physikz.updatePosition(circles[i]);//all circles are given a random position on the screen using the variable "i" from the loop
+                game.checkCirclePosition(circles[i]);//this keeps all circles on screen now using "i" in the loop
              }
             
         }
@@ -93,14 +93,14 @@ var init = function (window) {
             }
             
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-            if( circle.x < 0){
+            if( circle.x < 0){//if the circle has gone too far on the left side of the screen it should return on the right
                 circle.x = canvas.width;
             }
 
-            if(circle.y < 0){
+            if(circle.y < 0){//if the circle has gone too far up, it will return at the bottom of the screen
                 circle.y = canvas.height;
             }
-            if(circle.y > canvas.height){
+            if(circle.y > canvas.height){//if the circle has gone too far down, it will return at the top of the screen
                 circle.y = 0;
             }
 
