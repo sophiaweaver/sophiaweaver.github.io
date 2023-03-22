@@ -27,10 +27,24 @@ var level01 = function (window) {
 
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
+        
+        function createFireball(positionX, positionY, damage){
+            var hitZoneSize = 25;//assigns a value of 25 as the size of the hitzone
+            var damageFromObstacle = damage;//assigns a value as the damage from the obstacle
+            var fireballHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);//creates the obstacle and stores it in the variable sawBladeHitZone
+            fireballHitZone.x = positionX;//stores a value as the x postition for the hit zone
+            fireballHitZone.y = groundY - positionY;//stores a value as the y postition for the hit zone
+            game.addGameItem(fireballHitZone);//adds the hitzone as a game item
+            var obstacleImage = draw.bitmap("img/fireball.png");//draws the image and stores it in the variable obstacleImage
+            fireballHitZone.addChild(obstacleImage);//adds obstacle image as a child sawBladeHitZone
+            obstacleImage.x = - 25;//assigna a value to the x positin of obstacle image
+            obstacleImage.y = - 25;//assigna a value to the y positin of obstacle image
+        }
+        createFireball(400, groundY - 110, 25);
+        createFireball(800, groundY, 5);
+        createFireball(300, groundY, 15);
+        createFireball(950, groundY, 10);
 
-        
-        
-        
         // DO NOT EDIT CODE BELOW HERE
     }
 };
