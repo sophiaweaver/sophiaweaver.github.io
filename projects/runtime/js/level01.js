@@ -16,9 +16,12 @@ var level01 = function (window) {
             "number": 1, 
             "speed": -3,
             "gameItems": [
-                { "type": "sawblade", "x": 400, "y": groundY },
-                { "type": "sawblade", "x": 600, "y": groundY },
-                { "type": "sawblade", "x": 900, "y": groundY },
+                { "type": "sawblade", "x": 400, "y": groundY - 110 },
+                { "type": "sawblade", "x": 600, "y": groundY - 10 },
+                { "type": "sawblade", "x": 900, "y": groundY - 110},
+                { "type": "enemy", "x": 400, "y": groundY - 50 },
+                { "type": "enemy", "x": 400, "y": groundY - 400 }
+                { "type": "reward", "x": 400, "y": groundY - 110 }
             ]
         };
         window.levelData = levelData;
@@ -33,7 +36,7 @@ var level01 = function (window) {
             var damageFromObstacle = damage;//assigns a value as the damage from the obstacle
             var fireballHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);//creates the obstacle and stores it in the variable sawBladeHitZone
             fireballHitZone.x = positionX;//stores a value as the x postition for the hit zone
-            fireballHitZone.y = groundY - positionY;//stores a value as the y postition for the hit zone
+            fireballHitZone.y = positionY;//stores a value as the y postition for the hit zone
             game.addGameItem(fireballHitZone);//adds the hitzone as a game item
             var obstacleImage = draw.bitmap("img/fireball.png");//draws the image and stores it in the variable obstacleImage
             fireballHitZone.addChild(obstacleImage);//adds obstacle image as a child sawBladeHitZone
@@ -41,9 +44,51 @@ var level01 = function (window) {
             obstacleImage.y = - 25;//assigna a value to the y positin of obstacle image
         }
         createFireball(400, groundY - 110, 25);
-        createFireball(800, groundY, 5);
-        createFireball(300, groundY, 15);
-        createFireball(950, groundY, 10);
+        createFireball(600, groundY - 10, 5);
+        createFireball(800, groundY - 110, 15);
+        createFireball(1000, groundY - 110, 10);
+
+        function createEnemy(x, y, color, velocity){
+        var enemy = game.createGameItem("enemy", 25);
+        var gameItem = draw.rect(50, 50, color);
+        gameItem.x = -25;
+        gameItem.y = -25;
+        enemy.addChild(gameItem);
+        enemy.x = x;
+        enemy.y = y  ;
+        game.addGameItem(enemy);
+        enemy.velocityX = - velocity;
+
+        enemy.onPlayerCollision = function () {
+            game.changeIntegrity(-10)
+        };
+
+        enemy.onProjectileCollision = function () {
+            game.increaseScore(100);
+            enemy.shrink();
+        };
+    }
+
+
+
+    function createReward(x, y, color, velocity){
+        var reward = game.createGameItem("reward", 25);
+        var gameItem = draw.rect(50, 50, color);
+        gameItem.x = -25;
+        gameItem.y = -25;
+        reward.addChild(gameItem);
+        reward.x = x;
+        reward.y = y  ;
+        game.addGameItem(reward);
+        reward.velocityX = - velocity;
+
+        reward.onPlayerCollision = function () {
+            game.changeIntegrity(+10)
+            game.increaseScore(50);
+            reward.shrink();
+        };
+    }
+
 
         // DO NOT EDIT CODE BELOW HERE
     }
