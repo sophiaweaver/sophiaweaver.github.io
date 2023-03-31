@@ -16,13 +16,19 @@ var level01 = function (window) {
             "number": 1, 
             "speed": -3,
             "gameItems": [
-                { "type": "sawblade", "x": 400, "y": groundY - 110 },
-                { "type": "sawblade", "x": 600, "y": groundY - 10 },
-                { "type": "sawblade", "x": 900, "y": groundY - 110},
-                { "type": "enemy", "x": 400, "y": groundY - 50 },
-                { "type": "enemy", "x": 400, "y": groundY - 400 }
-                { "type": "reward", "x": 400, "y": groundY - 110 }
+                { "type": "fireball", "x": 400, "y": groundY - 110, "damage": 25},
+                { "type": "fireball", "x": 600, "y": groundY - 10, "damage": 25 },
+                { "type": "fireball", "x": 800, "y": groundY - 110, "damage": 25},
+                { "type": "fireball", "x": 1000, "y": groundY - 110, "damage": 25},
+
+                { "type": "enemy", "x": 400, "y": groundY - 100, "velocity": 5},
+                { "type": "enemy", "x": 400, "y": groundY - 400, "velocity": 5},
+
+                { "type": "reward", "x": 400, "y": groundY - 110, "velocity": 5},
+
+                { "type": "coin", "x": 5000, "y": groundY - 110, "velocity": 25},
             ]
+
         };
         window.levelData = levelData;
         // set this to true or false depending on if you want to see hitzones
@@ -40,22 +46,19 @@ var level01 = function (window) {
             game.addGameItem(fireballHitZone);//adds the hitzone as a game item
             var obstacleImage = draw.bitmap("img/fireball.png");//draws the image and stores it in the variable obstacleImage
             fireballHitZone.addChild(obstacleImage);//adds obstacle image as a child sawBladeHitZone
-            obstacleImage.x = - 25;//assigna a value to the x positin of obstacle image
-            obstacleImage.y = - 25;//assigna a value to the y positin of obstacle image
+            obstacleImage.x = - 95;//assigna a value to the x positin of obstacle image
+            obstacleImage.y = - 105;//assigna a value to the y positin of obstacle image
         }
-        createFireball(400, groundY - 110, 25);
-        createFireball(600, groundY - 10, 5);
-        createFireball(800, groundY - 110, 15);
-        createFireball(1000, groundY - 110, 10);
 
-        function createEnemy(x, y, color, velocity){
+
+        function createEnemy(x, y, velocity){
         var enemy = game.createGameItem("enemy", 25);
-        var gameItem = draw.rect(50, 50, color);
+        var gameItem = draw.bitmap("img/fireball.png");
         gameItem.x = -25;
         gameItem.y = -25;
         enemy.addChild(gameItem);
         enemy.x = x;
-        enemy.y = y  ;
+        enemy.y = y;
         game.addGameItem(enemy);
         enemy.velocityX = - velocity;
 
@@ -71,31 +74,68 @@ var level01 = function (window) {
 
 
 
-    function createReward(x, y, color, velocity){
+    function createReward(x, y, velocity){
         var reward = game.createGameItem("reward", 25);
-        var gameItem = draw.rect(50, 50, color);
+        var gameItem = draw.bitmap("img/heart.png");
         gameItem.x = -25;
         gameItem.y = -25;
         reward.addChild(gameItem);
         reward.x = x;
         reward.y = y  ;
         game.addGameItem(reward);
-        reward.velocityX = - velocity;
+        reward.velocityX = - 2;
 
         reward.onPlayerCollision = function () {
             game.changeIntegrity(+10)
             game.increaseScore(50);
             reward.shrink();
-        };
+        }
     }
 
+    function createRewardCoin(x, y, velocity){
+        var coin = game.createGameItem("coin", 25);
+        var gameItem = draw.bitmap("img/coin.png");
+        gameItem.x = -25;
+        gameItem.y = -25;
+        coin.addChild(gameItem);
+        coin.x = x;
+        coin.y = y  ;
+        game.addGameItem(coin);
+        coin.velocityX = - 2;
+
+        coin.onPlayerCollision = function () {
+            game.changeIntegrity(10)
+            game.increaseScore(50);
+            coin.shrink();
+        }
+    }
+
+        for(var i = 0; i < levelData.gameItems.length; i++){
+            var gameItem = levelData.gameItems[i];
+
+            if(gameItem.type === "fireball"){
+                createFireball(gameItem.x, gameItem.y, gameItem.damage);
+            }
+
+            if(gameItem.type === "enemy"){
+                createEnemy(gameItem.x, gameItem.y, gameItem.velocity);
+            }
+            
+            if(gameItem.type === "reward"){
+                createReward(gameItem.x, gameItem.y, gameItem.velocity);
+            }
+
+            if(gameItem.type === "coin"){
+                createRewardCoin(gameItem.x, gameItem.y, gameItem.velocity);
+            }
+        }
 
         // DO NOT EDIT CODE BELOW HERE
     }
 };
 
-// DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
-if((typeof process !== 'undefined') &&
+    // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
+    if((typeof process !== 'undefined') &&
     (typeof process.versions.node !== 'undefined')) {
     // here, export any references you need for tests //
     module.exports = level01;
