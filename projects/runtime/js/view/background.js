@@ -48,6 +48,13 @@ var background = function (window) {
             
             
             // TODO: 3 - Add a moon and starfield
+            for(var i = 0; i < 300; i++){
+                var circle = draw.bitmap("img/star.png");
+                circle.x = canvasWidth * Math.random();
+                circle.y = (groundY - 15) * Math.random();
+                background.addChild(circle);
+            }
+           
             var moon = draw.bitmap("img/moon.png");
             moon.x = canvasWidth - 300;
             moon.y = groundY - 450;
@@ -55,12 +62,7 @@ var background = function (window) {
             moon.scaleY = .50;
             background.addChild(moon);
 
-            for(var i = 0; i < 300; i++){
-                var circle = draw.bitmap("img/star.png");
-                circle.x = canvasWidth * Math.random();
-                circle.y = (groundY - 15) * Math.random();
-                background.addChild(circle);
-            }
+
             
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             /*for (var i = 0; i < 5; ++i) {
