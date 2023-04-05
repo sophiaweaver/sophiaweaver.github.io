@@ -16,17 +16,21 @@ var level01 = function (window) {
             "number": 1, 
             "speed": -3,
             "gameItems": [
-                { "type": "fireball", "x": 400, "y": groundY - 110, "damage": 25},
-                { "type": "fireball", "x": 600, "y": groundY - 10, "damage": 25 },
-                { "type": "fireball", "x": 800, "y": groundY - 110, "damage": 25},
+                { "type": "fireball", "x": 400, "y": groundY - 110, "damage": 25}, 
+                { "type": "fireball", "x": 3000, "y": groundY - 110, "damage": 25},
                 { "type": "fireball", "x": 1000, "y": groundY - 110, "damage": 25},
 
-                { "type": "enemy", "x": 400, "y": groundY - 100, "velocity": 5},
-                { "type": "enemy", "x": 400, "y": groundY - 400, "velocity": 5},
+                { "type": "enemy", "image": "img/vampire.png", "x": 400, "y": groundY - 70, "velocity": 5, "scale": 0.1},
+                { "type": "enemy", "image": "img/vampire.png", "x": 4000, "y": groundY - 70, "velocity": 6, "scale": 0.1},
+                { "type": "enemy", "image": "img/vampire.png", "x": 2000, "y": groundY - 70, "velocity": 7, "scale": 0.1},
+                { "type": "enemy", "image": "img/vampire.png", "x": 5400, "y": groundY - 70, "velocity": 3, "scale": 0.1},
 
-                { "type": "reward", "x": 400, "y": groundY - 110, "velocity": 5},
+                { "type": "reward", "x": 400, "y": groundY - 11, "velocity": 5},
 
                 { "type": "coin", "x": 5000, "y": groundY - 110, "velocity": 25},
+
+                { "type": "bush", "image": "img/bush.png", "x": 500, "y": groundY - 10, "damage": 25},
+                
             ]
 
         };
@@ -50,20 +54,35 @@ var level01 = function (window) {
             obstacleImage.y = - 105;//assigna a value to the y positin of obstacle image
         }
 
+        function createBush(image, positionX, positionY, damage){
+            var hitZoneSize = 25;//assigns a value of 25 as the size of the hitzone
+            var damageFromObstacle = damage;//assigns a value as the damage from the obstacle
+            var bushHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);//creates the obstacle and stores it in the variable sawBladeHitZone
+            bushHitZone.x = positionX;//stores a value as the x postition for the hit zone
+            bushHitZone.y = positionY;//stores a value as the y postition for the hit zone
+            game.addGameItem(bushHitZone);//adds the hitzone as a game item
+            var obstacleImage = draw.bitmap(image);//draws the image and stores it in the variable obstacleImage
+            bushHitZone.addChild(obstacleImage);//adds obstacle image as a child sawBladeHitZone
+            obstacleImage.x = - 25;//assigna a value to the x positin of obstacle image
+            obstacleImage.y = - 25;//assigna a value to the y positin of obstacle image
+        }
 
-        function createEnemy(x, y, velocity){
+
+        function createEnemy(image, x, y, velocity, scale){
         var enemy = game.createGameItem("enemy", 25);
-        var gameItem = draw.bitmap("img/fireball.png");
-        gameItem.x = -25;
-        gameItem.y = -25;
+        var gameItem = draw.bitmap(image);
+        gameItem.x = -40;
+        gameItem.y = -150;
         enemy.addChild(gameItem);
         enemy.x = x;
         enemy.y = y;
         game.addGameItem(enemy);
         enemy.velocityX = - velocity;
+        gameItem.scaleX = scale;
+        gameItem.scaleY = scale;
 
         enemy.onPlayerCollision = function () {
-            game.changeIntegrity(-10)
+            game.changeIntegrity(-50)
         };
 
         enemy.onProjectileCollision = function () {
@@ -77,11 +96,11 @@ var level01 = function (window) {
     function createReward(x, y, velocity){
         var reward = game.createGameItem("reward", 25);
         var gameItem = draw.bitmap("img/heart.png");
-        gameItem.x = -25;
-        gameItem.y = -25;
+        gameItem.x = -15;
+        gameItem.y = -10;
         reward.addChild(gameItem);
         reward.x = x;
-        reward.y = y  ;
+        reward.y = y;
         game.addGameItem(reward);
         reward.velocityX = - 2;
 
@@ -118,7 +137,7 @@ var level01 = function (window) {
             }
 
             if(gameItem.type === "enemy"){
-                createEnemy(gameItem.x, gameItem.y, gameItem.velocity);
+                createEnemy(gameItem.image, gameItem.x, gameItem.y, gameItem.velocity, gameItem.scale);
             }
             
             if(gameItem.type === "reward"){
@@ -127,6 +146,10 @@ var level01 = function (window) {
 
             if(gameItem.type === "coin"){
                 createRewardCoin(gameItem.x, gameItem.y, gameItem.velocity);
+            }
+
+            if(gameItem.type === "bush"){
+                createBush(gameItem.image, gameItem.x, gameItem.y, gameItem.damage);
             }
         }
 

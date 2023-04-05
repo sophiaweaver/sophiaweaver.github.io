@@ -28,6 +28,11 @@ var background = function (window) {
         // ANIMATION VARIABLES HERE:
         var tree;
         var bigTree;
+        var bubbleTree;
+        var bush;
+        var flower;
+        var largeTree;
+
         //var buildings = [];
      
         // called at the start of game and whenever the page is resized
@@ -50,10 +55,10 @@ var background = function (window) {
             moon.scaleY = .50;
             background.addChild(moon);
 
-            for(var i = 0; i < 100; i++){
-                var circle = draw.circle(5, "white", "LightGray", 2);
+            for(var i = 0; i < 300; i++){
+                var circle = draw.bitmap("img/star.png");
                 circle.x = canvasWidth * Math.random();
-                circle.y = groundY * Math.random();
+                circle.y = (groundY - 15) * Math.random();
                 background.addChild(circle);
             }
             
@@ -79,6 +84,16 @@ var background = function (window) {
             bigTree.x = canvasWidth - 20;
             bigTree.y = groundY - 230;
             background.addChild(bigTree);
+
+            bubbleTree = draw.bitmap("img/bubbleTree.png");
+            bubbleTree.x = canvasWidth - 900;
+            bubbleTree.y = groundY - 250;
+            background.addChild(bubbleTree);
+
+            largeTree = draw.bitmap("img/largeTree.png");
+            largeTree.x = canvasWidth - 600;
+            largeTree.y = groundY - 250;
+            background.addChild(largeTree);
             
         } // end of render function - DO NOT DELETE
         
@@ -94,6 +109,8 @@ var background = function (window) {
             // TODO 4: Part 2 - Move the tree!
             tree.x = tree.x - 1;
             bigTree.x = bigTree.x - 1;
+            bubbleTree.x = bubbleTree.x - 1;
+            largeTree.x = largeTree.x - 1;
 
             if (tree.x < -200) {
                 tree.x = canvasWidth;
@@ -101,6 +118,14 @@ var background = function (window) {
 
             if (bigTree.x < -200) {
                 bigTree.x = canvasWidth;
+            }
+
+            if (bubbleTree.x < -200) {
+                bubbleTree.x = canvasWidth;
+            }
+
+            if (largeTree.x < -200) {
+                largeTree.x = canvasWidth;
             }
             
             // TODO 5: Part 2 - Parallax
