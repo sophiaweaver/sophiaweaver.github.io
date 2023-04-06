@@ -39,7 +39,7 @@ var level01 = function (window) {
                 { "type": "enemy", "image": "img/vampire.png", "x": 1000, "y": groundY - 70, "velocity": 3, "scale": 0.1},
 
                 { "type": "heart", "x": 400, "y": groundY - 11, "velocity": 5},
-                { "type": "heart", "x": 800, "y": groundY - 45, "velocity": 5},
+                { "type": "heart", "x": 900, "y": groundY - 15, "velocity": 5},
                 { "type": "heart", "x": 4000, "y": groundY - 11, "velocity": 5},
                 { "type": "heart", "x": 5000, "y": groundY - 11, "velocity": 5},
                 { "type": "heart", "x": 5500, "y": groundY - 11, "velocity": 5},
@@ -72,7 +72,7 @@ var level01 = function (window) {
         };
         window.levelData = levelData;
         // set this to true or false depending on if you want to see hitzones
-        game.setDebugMode(true);
+        game.setDebugMode(false);
 
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
