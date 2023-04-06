@@ -32,8 +32,8 @@ var init = function (window) {
     ground = opspark.makeGround(app);
 
     // TODO 2 : add background
-    var background = opspark.makeBackground(app, ground);
-    view.addChild(background);
+    var background = opspark.makeBackground(app, ground);//function call for background which is a function in the background section
+    view.addChild(background);//adds the child background to make it visible
     
     var help = draw.textfield('MOVES || up: jump | right: flying jump | down: duck | space: fire | q self destruct!', 
         '20px Arial',
@@ -72,8 +72,8 @@ var init = function (window) {
     }
     
     // TODO 1 : add a heads-up display to game
-    var hud = opspark.makeHud();
-    view.addChild(hud);
+    var hud = opspark.makeHud();//declares a variable called hud assigning it opspark.makeHud()
+    view.addChild(hud);//makes and returns a Heads-Up-Display object
     window.hud = hud;
 
 

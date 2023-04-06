@@ -43,34 +43,34 @@ var background = function (window) {
             // TODO: 2 - Part 2
             // this fills the background with a obnoxious yellow
             // you should modify this to suit your game
-            var backgroundFill = draw.rect(canvasWidth,groundY,'#0c1424');
-            background.addChild(backgroundFill);
+            var backgroundFill = draw.rect(canvasWidth,groundY,'#0c1424');//creates a variable to dtermine how large the background wil be and what color
+            background.addChild(backgroundFill);//adds background child to make it visible
             
             
             // TODO: 3 - Add a moon and starfield
-            for(var i = 0; i < 300; i++){
-                var circle = draw.bitmap("img/star.png");
-                circle.x = canvasWidth * Math.random();
-                circle.y = (groundY - 15) * Math.random();
-                background.addChild(circle);
+            for(var i = 0; i < 300; i++){//a loop saying that the star count starts at zero, ends at 300, and increases star count by 1 each time
+                var circle = draw.bitmap("img/star.png");//variable called circle assigns what the stars look like(i inserted and image)
+                circle.x = canvasWidth * Math.random();//ensures the stars are randomly placed around the canvas
+                circle.y = (groundY - 15) * Math.random();//ensures that the stars a=stay within the assigned "ground" we have given the game
+                background.addChild(circle);//calls the child of the stars to make them visible
             }
            
-            var moon = draw.bitmap("img/moon.png");
-            moon.x = canvasWidth - 300;
-            moon.y = groundY - 450;
-            moon.scaleX = .50;
-            moon.scaleY = .50;
-            background.addChild(moon);
+            var moon = draw.bitmap("img/moon.png");//declares a variable named mon and assigns it an imported image
+            moon.x = canvasWidth - 300;//determines the moon's x position
+            moon.y = groundY - 450;///determines the moon's y positiob
+            moon.scaleX = .50;//gives the moon the proper x size
+            moon.scaleY = .50;//gives the moon the proper y size
+            background.addChild(moon);//declares the child making the moon visible
 
 
             
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-            /*for (var i = 0; i < 5; ++i) {
-                var buildingHeights = [100, 50, 75, 46, 240];
+            /*for (var i = 0; i < 5; ++i) {//creates a loop starting at 0 ending at 5 and increasing by 1
+                var buildingHeights = [100, 50, 75, 46, 240];//declares an array of 5 different buliding heights
 
-                var buildingColors = ["#2f0f79", "#a78ee1", "#1c262d", "#9fbed4", "#075464"]
-                var building = draw.rect(75, buildingHeights[i], buildingColors[i], "Black", 1);
-                building.x = 200 * i;
+                var buildingColors = ["#2f0f79", "#a78ee1", "#1c262d", "#9fbed4", "#075464"]// decalres an array of colors of 5 different indexes
+                var building = draw.rect(75, buildingHeights[i], buildingColors[i], "Black", 1);//creates a variable assigning different parameters for different parts of the buildings such as height, color, width, and outline color
+                building.x = 200 * i;//
                 building.y = groundY - buildingHeights[i];
                 background.addChild(building);
                 buildings.push(building);
