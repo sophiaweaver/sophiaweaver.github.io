@@ -26,14 +26,13 @@ var background = function (window) {
         var background;
         
         // ANIMATION VARIABLES HERE:
-        var tree;
+        var tree;//variables to be called later
         var bigTree;
         var bubbleTree;
         var bush;
-        var flower;
         var largeTree;
 
-        //var buildings = [];
+        //var buildings = [];//array for different building heights
      
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
@@ -77,25 +76,25 @@ var background = function (window) {
               }
             */
             // TODO 4: Part 1 - Add a tree
-            tree = draw.bitmap("img/tree.png");
-            tree.x = canvasWidth - 200;
-            tree.y = groundY - 230;
-            background.addChild(tree);
+            tree = draw.bitmap("img/tree.png");//declares the variable tree as an image
+            tree.x = canvasWidth - 200;//gives the tree an x position
+            tree.y = groundY - 230;//gives the tree a y position
+            background.addChild(tree);//creates the tree as a child
 
-            bigTree = draw.bitmap("img/bigTree.png");
-            bigTree.x = canvasWidth - 20;
-            bigTree.y = groundY - 230;
-            background.addChild(bigTree);
+            bigTree = draw.bitmap("img/bigTree.png");//declares the variable tree as an image
+            bigTree.x = canvasWidth - 20;//gives the tree an x position
+            bigTree.y = groundY - 230;//gives the tree a y position
+            background.addChild(bigTree);//creates the tree as a child
 
-            bubbleTree = draw.bitmap("img/bubbleTree.png");
-            bubbleTree.x = canvasWidth - 900;
-            bubbleTree.y = groundY - 250;
-            background.addChild(bubbleTree);
+            bubbleTree = draw.bitmap("img/bubbleTree.png");//declares the variable tree as an image
+            bubbleTree.x = canvasWidth - 900;//gives the tree an x position
+            bubbleTree.y = groundY - 250;//gives the tree a y position
+            background.addChild(bubbleTree);//creates the tree as a child
 
-            largeTree = draw.bitmap("img/largeTree.png");
-            largeTree.x = canvasWidth - 600;
-            largeTree.y = groundY - 250;
-            background.addChild(largeTree);
+            largeTree = draw.bitmap("img/largeTree.png");//declares the variable tree as an image
+            largeTree.x = canvasWidth - 600;//gives the tree an x position
+            largeTree.y = groundY - 250;//gives the tree a y position
+            background.addChild(largeTree);//creates the tree as a child
             
         } // end of render function - DO NOT DELETE
         
@@ -109,32 +108,32 @@ var background = function (window) {
             var groundY = ground.y;
             
             // TODO 4: Part 2 - Move the tree!
-            tree.x = tree.x - 1;
-            bigTree.x = bigTree.x - 1;
-            bubbleTree.x = bubbleTree.x - 1;
-            largeTree.x = largeTree.x - 1;
+            tree.x = tree.x - 1;//makes the trees move from the left to the right side of the screen by decreasing the x position by 1
+            bigTree.x = bigTree.x - 1;//makes the trees move from the left to the right side of the screen by decreasing the x position by 1
+            bubbleTree.x = bubbleTree.x - 1;//makes the trees move from the left to the right side of the screen by decreasing the x position by 1
+            largeTree.x = largeTree.x - 1;//makes the trees move from the left to the right side of the screen by decreasing the x position by 1
 
-            if (tree.x < -200) {
+            if (tree.x < -200) {//if the tree goes past the -200 mark for x, then it returns back on the right side of the canvas
                 tree.x = canvasWidth;
             }
 
-            if (bigTree.x < -200) {
+            if (bigTree.x < -200) {//if the tree goes past the -200 mark for x, then it returns back on the right side of the canvas
                 bigTree.x = canvasWidth;
             }
 
-            if (bubbleTree.x < -200) {
+            if (bubbleTree.x < -200) {//if the tree goes past the -200 mark for x, then it returns back on the right side of the canvas
                 bubbleTree.x = canvasWidth;
             }
 
-            if (largeTree.x < -200) {
+            if (largeTree.x < -200) {//if the tree goes past the -200 mark for x, then it returns back on the right side of the canvas
                 largeTree.x = canvasWidth;
             }
             
             // TODO 5: Part 2 - Parallax
-            /*for (var i = 0; i < buildings.length; i++) {
-                var building = buildings[i];
-                building.x = building.x - 1;
-                if(building.x < 100){
+            /*for (var i = 0; i < buildings.length; i++) {//a loop that starts at 0, ends at the length of the building array and increases by 1
+                var building = buildings[i];// the building variable is now assigned to the seperate building indexes in the array
+                building.x = building.x - 1;//the buliding x position decreases by 1 making them go from the right to the left side if the screen
+                if(building.x < -100){//if the buildings go past the -100 x position, they return at the canvasWidth on the right side of the screen
                     building.x = canvasWidth;
                 }
                 
