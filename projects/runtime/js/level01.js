@@ -27,8 +27,6 @@ var level01 = function (window) {
                 { "type": "fireball", "x": 1800, "y": groundY - 110, "damage": 5},
                 { "type": "fireball", "x": 1000, "y": groundY - 110, "damage": 25},
 
-
-                { "type": "enemy", "image": "img/vampire.png", "x": 400, "y": groundY - 70, "velocity": 2, "scale": 0.1},
                 { "type": "enemy", "image": "img/vampire.png", "x": 4000, "y": groundY - 70, "velocity": 6, "scale": 0.1},
                 { "type": "enemy", "image": "img/vampire.png", "x": 2000, "y": groundY - 70, "velocity": 7, "scale": 0.1},
                 { "type": "enemy", "image": "img/vampire.png", "x": 5400, "y": groundY - 70, "velocity": 3, "scale": 0.1},
@@ -39,7 +37,6 @@ var level01 = function (window) {
                 { "type": "enemy", "image": "img/vampire.png", "x": 1000, "y": groundY - 70, "velocity": 3, "scale": 0.1},
 
                 { "type": "heart", "x": 400, "y": groundY - 11, "velocity": 5},
-                { "type": "heart", "x": 900, "y": groundY - 15, "velocity": 5},
                 { "type": "heart", "x": 4000, "y": groundY - 11, "velocity": 5},
                 { "type": "heart", "x": 5000, "y": groundY - 11, "velocity": 5},
                 { "type": "heart", "x": 5500, "y": groundY - 11, "velocity": 5},
@@ -105,86 +102,86 @@ var level01 = function (window) {
 
 
         function createEnemy(image, x, y, velocity, scale){
-        var enemy = game.createGameItem("enemy", 25);//names the object enemy in order to assign it arguments in other code and
+        var enemy = game.createGameItem("enemy", 25);//names the object enemy in order to assign it arguments in other code and to call it later on
         var gameItem = draw.bitmap(image);//draws the image and uses the parameter image to be later assigned a certain image
-        gameItem.x = -40;
-        gameItem.y = -150;
-        enemy.addChild(gameItem);
-        enemy.x = x;
-        enemy.y = y;
-        game.addGameItem(enemy);
-        enemy.velocityX = - velocity;
-        gameItem.scaleX = scale;
-        gameItem.scaleY = scale;
+        gameItem.x = -40;// lines up the enemy onto the hit zone's x value
+        gameItem.y = -150;// lines up the enemy onto the hit zone's y value
+        enemy.addChild(gameItem);//adds the enemy image as a child of enemy
+        enemy.x = x;//gives the enemy an x position
+        enemy.y = y;//gives the enemy an y position
+        game.addGameItem(enemy);//adds the enemy as a game item
+        enemy.velocityX = - velocity;//changes the enemies velocity 
+        gameItem.scaleX = scale;//helps scale the objects x value
+        gameItem.scaleY = scale;//helps scale the objects y value
 
-        enemy.onPlayerCollision = function () {
-            game.changeIntegrity(-50)
+        enemy.onPlayerCollision = function () {//function to change halle's health
+            game.changeIntegrity(-50)//when the onject hits halle the health bar decreases by 50
         };
 
-        enemy.onProjectileCollision = function () {
-            game.increaseScore(100);
-            enemy.shrink();
+        enemy.onProjectileCollision = function () {//a function for when the certain object is hit by halle's shots
+            game.increaseScore(100);//when the object is shot by halle the score increases by 100
+            enemy.shrink();//when the object is shot it shrinks
         };
     }
 
 
 
     function createReward(x, y, velocity){
-        var heart = game.createGameItem("heart", 25);
-        var gameItem = draw.bitmap("img/heart.png");
-        gameItem.x = -15;
-        gameItem.y = -10;
-        heart.addChild(gameItem);
-        heart.x = x;
-        heart.y = y;
-        game.addGameItem(heart);
-        heart.velocityX = - 2;
+        var heart = game.createGameItem("heart", 25);//names the object heart in order to assign it arguments in other code and to call it later on
+        var gameItem = draw.bitmap("img/heart.png");//declaes the gameItem variable and assigns it a heart image
+        gameItem.x = -15;// lines up the reward onto the hit zone's x value
+        gameItem.y = -10;// lines up the reward onto the hit zone's y value
+        heart.addChild(gameItem);//adds the reward image as a child of reward
+        heart.x = x;//gives the reward an x position
+        heart.y = y;//gives the reward an y position
+        game.addGameItem(heart);//adds the reward as a game item
+        heart.velocityX = - 2;//changes the hearts velocity 
 
-        heart.onPlayerCollision = function () {
-            game.changeIntegrity(+10)
-            game.increaseScore(50);
-            heart.shrink();
+        heart.onPlayerCollision = function () {//function that happens when the heart object collides with halle
+            game.changeIntegrity(+30)//when colliding with halle the heart gives halle 30 health
+            game.increaseScore(50);//when colliding with halle the heart gives halle 50 points
+            heart.shrink();//when colliding with halle the heart shrinks
         }
     }
 
     function createRewardCoin(x, y, velocity){
-        var coin = game.createGameItem("coin", 25);
-        var gameItem = draw.bitmap("img/coin.png");
-        gameItem.x = -355;
-        gameItem.y = -95;
-        coin.addChild(gameItem);
-        coin.x = x;
-        coin.y = y;
-        game.addGameItem(coin);
-        coin.velocityX = - 2;
+        var coin = game.createGameItem("coin", 25);//names the object coin in order to assign it arguments in other code and to call it later on
+        var gameItem = draw.bitmap("img/coin.png");//declaes the gameItem variable and assigns it a coin image
+        gameItem.x = -355;// lines up the reward onto the hit zone's x value
+        gameItem.y = -95;// lines up the reward onto the hit zone's y value
+        coin.addChild(gameItem);//adds the reward image as a child of reward
+        coin.x = x;//gives the reward an x position
+        coin.y = y;//gives the reward an y position
+        game.addGameItem(coin);//adds the reward as a game item
+        coin.velocityX = - 2;//changes the coins velocity 
 
-        coin.onPlayerCollision = function () {
-            game.changeIntegrity(10)
-            game.increaseScore(50);
-            coin.shrink();
+        coin.onPlayerCollision = function () {//function that happens when the coin object collides with halle
+            game.changeIntegrity(10)//when colliding with halle the coin gives halle 10 health
+            game.increaseScore(50);//when colliding with halle the coin gives halle 50 points
+            coin.shrink();//when colliding with halle the coin shrinks
         }
     }
 
-        for(var i = 0; i < levelData.gameItems.length; i++){
-            var gameItem = levelData.gameItems[i];
+        for(var i = 0; i < levelData.gameItems.length; i++){//loop starts at 0, ends at the length of the levelData array and increases by 1
+            var gameItem = levelData.gameItems[i];//variable gameItem is assigned to every index of the levelData array
 
-            if(gameItem.type === "fireball"){
+            if(gameItem.type === "fireball"){//an if statement that calls the function createFireball if the key value pair "fireball is called"
                 createFireball(gameItem.x, gameItem.y, gameItem.damage);
             }
 
-            if(gameItem.type === "enemy"){
+            if(gameItem.type === "enemy"){//an if statement that calls the function createEnemy if the key value pair "enemy"
                 createEnemy(gameItem.image, gameItem.x, gameItem.y, gameItem.velocity, gameItem.scale);
             }
             
-            if(gameItem.type === "heart"){
+            if(gameItem.type === "heart"){//an if statement that calls the function createReward if the key value pair "heart"
                 createReward(gameItem.x, gameItem.y, gameItem.velocity);
             }
 
-            if(gameItem.type === "coin"){
+            if(gameItem.type === "coin"){//an if statement that calls the function createRewardCoin if the key value pair "coin"
                 createRewardCoin(gameItem.x, gameItem.y, gameItem.velocity);
             }
 
-            if(gameItem.type === "bush"){
+            if(gameItem.type === "bush"){//an if statement that calls the function createBush if the key value pair "bush" is called"
                 createBush(gameItem.image, gameItem.x, gameItem.y, gameItem.damage);
             }
         }
